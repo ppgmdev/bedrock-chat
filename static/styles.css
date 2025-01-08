@@ -1,0 +1,33 @@
+body{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.container {
+}
+
+.form {
+}
+
+.input {
+    width: 90%;
+    padding: 1em;
+}
+.message-area {
+    border-color: red;
+}
+
+.send-button {
+    margin-top: 3px;
+    border: none;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    transition-duration: 0.5s;
+}
+
+.send-button:hover {
+    background-color: yellow;
+}
+
