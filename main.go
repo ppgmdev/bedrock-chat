@@ -89,10 +89,8 @@ func handleSendMessage(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-
-
     fs := http.FileServer(http.Dir("./static"))
-    http.Handle("/", fs)
-    http.HandleFunc("/send-message", handleSendMessage)
+    go http.Handle("/", fs)
+    go http.HandleFunc("/send-message", handleSendMessage)
     log.Fatal(http.ListenAndServe(":8080", nil))
 }

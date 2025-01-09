@@ -19,6 +19,7 @@ form.addEventListener("submit", (e) => {
     appendMessage(`user: ${message}`, true)
     console.log("hello")
     console.log(`sending ${message} to the server`)
+    messageInput.value = ""
 
     fetch("/send-message", {
         method: "POST",
@@ -30,7 +31,7 @@ form.addEventListener("submit", (e) => {
     .then(response => response.text())
     .then(data => {
         console.log(`Success: ${data}`)
-        appendMessage(`bot: ${data}`, false)
+        appendMessage(`bot: ${data}`, false);
     })
     .catch((error) => {
         console.error(`Error: ${error}`)
