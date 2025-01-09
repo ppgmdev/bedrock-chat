@@ -2,7 +2,6 @@ package bedrock
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/service/bedrockruntime"
 	bedrocktypes "github.com/aws/aws-sdk-go-v2/service/bedrockruntime/types"
@@ -42,9 +41,6 @@ func (b *BedrockConverse) NewMessage(ctx context.Context, client *bedrockruntime
 
     response := bedrockOutput.Output.(*bedrocktypes.ConverseOutputMemberMessage)
     bedrockMessage := response.Value.Content[0].(*bedrocktypes.ContentBlockMemberText)
-
-
-    fmt.Println(bedrockMessage.Value)
 
     return bedrockMessage.Value, nil
 }
