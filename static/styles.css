@@ -12,6 +12,13 @@ h2 {
     color: #98CCD3;
 }
 
+.select-model {
+    margin-bottom: 10px;
+    border: none;
+    padding: 5px;
+    background-color: #219EBC;
+}
+
 .input {
     border: none;
     width: 97%;

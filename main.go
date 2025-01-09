@@ -31,6 +31,7 @@ func init() {
 
 type Message struct {
     Text string `json:"message"`
+    Model string `json:"model"`
     User string `json:"user"`
 }
 
@@ -68,14 +69,28 @@ func handleSendMessage(w http.ResponseWriter, r *http.Request) {
         http.Error(w, "no user provided", http.StatusBadRequest)
         return
     }
+    
+    if msg.Model == "" {
+        http.Error(w, "no user provided", http.StatusBadRequest)
+        return
+    }
 
     fmt.Println("Request method:", r.Method)
     fmt.Println("Message:", msg.Text)
     
     bedrockConverse := bedrock.BedrockConverse{
         Message: msg.Text,
-        Model: "amazon.nova-micro-v1:0",
     }
+    
+    switch msg.Model {
+    case "nova-micro":
+        bedrockConverse.Model = "amazon.nova-micro-v1:0"
+    case "nova-lite":
+        bedrockConverse.Model = "amazon.nova-lite-v1:0"
+    case "nova-pro":
+        bedrockConverse.Model = "amazon.nova-pro-v1:0"
+    }
+
 
     response, err := bedrockConverse.NewMessage(ctx, client)
     if err != nil {

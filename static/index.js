@@ -2,6 +2,7 @@ console.log("javascript loaded")
 
 const form = document.getElementById("form");
 const messageArea = document.getElementById("message-area");
+const selectModel = document.getElementById("select-model");
 
 function appendMessage(message, isUser) {
     const messageElement = document.createElement("div");
@@ -12,10 +13,18 @@ function appendMessage(message, isUser) {
     messageArea.scrollTop = messageArea.scrollHeight;
 }
 
+function getModelText() {
+    const modelText = selectModel.options[selectModel.selectedIndex].value;
+    console.log("model text: ", modelText)
+    return modelText
+}
+
 form.addEventListener("submit", (e) => {
     e.preventDefault()
     const messageInput = document.getElementById("message");
     const message = messageInput.value;
+    const model = getModelText()
+
     appendMessage(`user: ${message}`, true)
     console.log("hello")
     console.log(`sending ${message} to the server`)
@@ -26,7 +35,7 @@ form.addEventListener("submit", (e) => {
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ message: message, user: "pepe" }),
+        body: JSON.stringify({ message: message, model: model, user: "pepe" }),
     })
     .then(response => response.text())
     .then(data => {
