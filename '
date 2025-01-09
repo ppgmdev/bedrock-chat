@@ -3,7 +3,8 @@ package bedrock
 import (
 	"context"
 	"fmt"
-
+    "github.com/aws/aws-sdk-go-v2/config"
+	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/bedrockruntime"
 	bedrocktypes "github.com/aws/aws-sdk-go-v2/service/bedrockruntime/types"
 )
@@ -14,8 +15,13 @@ type BedrockConverse struct {
     messages []bedrocktypes.Message
 }
 
-func (b *BedrockConverse) NewMessage(ctx context.Context, client *bedrockruntime.Client) (string, error) {
+func (b *BedrockConverse) NewMessage() (string, error) {
     // TODO call bedrock with converse API
+
+    sdkconfig := config
+
+    client := bedrockruntime.NewFromConfig(sdkconfig)
+    ctx := context.Background()
 
     userMessage := bedrocktypes.Message{
         Content: []bedrocktypes.ContentBlock{
