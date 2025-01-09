@@ -2,18 +2,21 @@ body{
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-.container {
-}
-
-.form {
-}
-
 .input {
     width: 90%;
     padding: 1em;
 }
 .message-area {
     border-color: red;
+}
+
+.message {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.message.bot-message {
+    color: blueviolet;
 }
 
 .send-button {
