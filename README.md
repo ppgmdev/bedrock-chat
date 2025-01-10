@@ -1,4 +1,5 @@
 # Amazon Bedrock Chat
+## Local development
 ```bash
 git clone https://github.com/ppgmdev/bedrock-chat.git
 cd bedrock-chat
