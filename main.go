@@ -91,6 +91,20 @@ func handleSendMessage(w http.ResponseWriter, r *http.Request) {
         bedrockConverse.Model = "amazon.nova-pro-v1:0"
     case "haiku-3":
         bedrockConverse.Model = "anthropic.claude-3-haiku-20240307-v1:0"
+    case "claude-35-v2":
+        bedrockConverse.Model = "us.anthropic.claude-3-5-sonnet-20241022-v2:0"
+    case "haiku-35":
+        bedrockConverse.Model = "us.anthropic.claude-3-5-haiku-20241022-v1:0"
+    case "llama-33-70b":
+        bedrockConverse.Model = "us.meta.llama3-3-70b-instruct-v1:0"
+    case "mistral-small":
+        bedrockConverse.Model = "mistral.mistral-small-2402-v1:0"
+    case "mistral-7b":
+        bedrockConverse.Model = "mistral.mistral-7b-instruct-v0:2"
+    case "jamba-large":
+        bedrockConverse.Model = "ai21.jamba-1-5-large-v1:0"
+    case "jamba-mini":
+        bedrockConverse.Model = "ai21.jamba-1-5-mini-v1:0"
     }
 
 
