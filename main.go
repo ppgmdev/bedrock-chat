@@ -100,7 +100,15 @@ func handleSendMessage(w http.ResponseWriter, r *http.Request) {
         return
     }
 
-    fmt.Fprintf(w, "Bedrock: %s", response)
+    jsonResponse, err := json.Marshal(response)
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+        return
+    }
+
+    w.Header().Set("Content-Type", "application/json")
+    w.Write(jsonResponse)
+
 }
 
 func main() {

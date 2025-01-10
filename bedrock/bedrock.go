@@ -14,7 +14,12 @@ type BedrockConverse struct {
     messages []bedrocktypes.Message
 }
 
-func (b *BedrockConverse) NewMessage(ctx context.Context, client *bedrockruntime.Client) (string, error) {
+type Response struct {
+    Output string `json:"output"` 
+    Latency int64 `json:"latency"` 
+}
+
+func (b *BedrockConverse) NewMessage(ctx context.Context, client *bedrockruntime.Client) (Response, error) {
     // TODO call bedrock with converse API
     fmt.Println("using model:", b.Model)
 
@@ -38,11 +43,18 @@ func (b *BedrockConverse) NewMessage(ctx context.Context, client *bedrockruntime
     bedrockOutput, err := client.Converse(ctx, &converseInput)
 
     if err != nil {
-        return "", err
+        return Response{}, err
     }
 
-    response := bedrockOutput.Output.(*bedrocktypes.ConverseOutputMemberMessage)
-    bedrockMessage := response.Value.Content[0].(*bedrocktypes.ContentBlockMemberText)
+    responseBedrock := bedrockOutput.Output.(*bedrocktypes.ConverseOutputMemberMessage)
+    latency := bedrockOutput.Metrics.LatencyMs
+    bedrockMessage := responseBedrock.Value.Content[0].(*bedrocktypes.ContentBlockMemberText)
 
-    return bedrockMessage.Value, nil
+    response := Response{
+        Output: bedrockMessage.Value,
+        Latency: *latency,
+    }
+
+
+    return response, nil
 }

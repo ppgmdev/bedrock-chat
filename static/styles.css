@@ -39,6 +39,11 @@ h2 {
     color: #FFB703;
 }
 
+.message-area {
+    line-height: 1.6;
+    padding: 15px;
+}
+
 .send-button {
     margin-top: 0.5em;
     border-radius: 10px;

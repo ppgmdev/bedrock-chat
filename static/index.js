@@ -19,6 +19,16 @@ function getModelText() {
     return modelText
 }
 
+function markdownMessageArea() {
+    var messageAreas = document.getElementById('message-area');
+    
+    for (var i = 0; i < messageAreas.length; i++) {
+        var content = messageAreas[i].innerHTML;
+        var html = marked.parse(content);
+        messageAreas[i].innerHTML = html;
+    }
+};
+
 form.addEventListener("submit", (e) => {
     e.preventDefault()
     const messageInput = document.getElementById("message");
@@ -37,10 +47,13 @@ form.addEventListener("submit", (e) => {
         },
         body: JSON.stringify({ message: message, model: model, user: "pepe" }),
     })
-    .then(response => response.text())
+    .then(response => response.json())
     .then(data => {
-        console.log(`Success: ${data}`)
-        appendMessage(`bot: ${data}`, false);
+        console.log(data.output)
+        console.log(data.latency)
+        appendMessage(`bot: ${data.output}`, false);
+        appendMessage(`latency: ${data.latency} ms`, false);
+        markdownMessageArea()
     })
     .catch((error) => {
         console.error(`Error: ${error}`)
