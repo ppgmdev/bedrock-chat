@@ -1,4 +1,4 @@
-# Amazon Nova Bedrock Chat
+# Amazon Bedrock Chat
 ```bash
 git clone https://github.com/ppgmdev/bedrock-nova-chat.git
 cd bedrock-nova-chat

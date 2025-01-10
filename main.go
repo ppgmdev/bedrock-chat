@@ -89,6 +89,8 @@ func handleSendMessage(w http.ResponseWriter, r *http.Request) {
         bedrockConverse.Model = "amazon.nova-lite-v1:0"
     case "nova-pro":
         bedrockConverse.Model = "amazon.nova-pro-v1:0"
+    case "haiku-3":
+        bedrockConverse.Model = "anthropic.claude-3-haiku-20240307-v1:0"
     }
 
 
