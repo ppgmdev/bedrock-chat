@@ -132,4 +132,5 @@ func main() {
     go http.Handle("/", fs)
     go http.HandleFunc("/send-message", handleSendMessage)
     log.Fatal(http.ListenAndServe(":8080", nil))
+    fmt.Println("server listening on port 8080")
 }
