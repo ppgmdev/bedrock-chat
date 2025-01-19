@@ -128,9 +128,9 @@ func handleSendMessage(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+    fmt.Println("server listening on port 8080")
     fs := http.FileServer(http.Dir("./static"))
     go http.Handle("/", fs)
     go http.HandleFunc("/send-message", handleSendMessage)
     log.Fatal(http.ListenAndServe(":8080", nil))
-    fmt.Println("server listening on port 8080")
 }
